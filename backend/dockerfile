@@ -1,0 +1,18 @@
+FROM python:3.12.0
+
+ENV PIP_DISABLE_PIP_VERSION_CHECK 1
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+#Workspaces
+WORKDIR /app
+
+# Copy and exec requirements
+COPY requirements.txt /app/requirements.txt
+RUN pip install -r requirements.txt
+
+# Copy all
+COPY . /app
+
+# Run server
+CMD python manage.py runserver 0.0.0.0:8000
