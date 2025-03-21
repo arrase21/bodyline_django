@@ -1,7 +1,7 @@
-from rest_framework.viewsets import APIView
+from rest_framework.views import APIView
 from rest_framework.response import Response
 
 
 class TestView(APIView):
-    def get(self, request):
-        return Response({"message": "hello world"})
+    def get(self, request, *args, **kwargs):
+        return Response("Hola Mundo")

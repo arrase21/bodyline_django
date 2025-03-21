@@ -1,18 +1,22 @@
-FROM python:3.12.0
+FROM python:3.9
 
-ENV PIP_DISABLE_PIP_VERSION_CHECK 1
-ENV PYTHONDONTWRITEBYTECODE 1
+# Install ssh
+RUN apt-get update && apt-get install -y openssh-client
+
+# Set environment
 ENV PYTHONUNBUFFERED 1
 
-#Workspaces
+# Work spaces
 WORKDIR /app
 
-# Copy and exec requirements
+# Copy environment
 COPY requirements.txt /app/requirements.txt
+
+# Install dependencies
 RUN pip install -r requirements.txt
 
-# Copy all
-COPY . /app
+# Copy
+COPY  . /app
 
-# Run server
+# Ssart SSH tunel
 CMD python manage.py runserver 0.0.0.0:8000
