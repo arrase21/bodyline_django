@@ -3,5 +3,5 @@ from rest_framework.response import Response
 
 
 class TestView(APIView):
-    def get(self, request, *args, **kwargs):
-        return Response("Hola Mundo")
+    def get(self, request):
+        return Response({"test": "Hello world!"})
